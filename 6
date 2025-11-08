@@ -1,0 +1,29 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+const int tempPin = A0;
+void setup() {
+  lcd.init();
+  lcd.backlight();
+  Serial.begin(9600);
+  lcd.setCursor(0, 0);
+  lcd.print("Temp Sensor");
+  delay(1000);
+  lcd.clear();
+}
+void loop() {
+  int tempValue = analogRead(tempPin);
+  float temperature = (tempValue * 5.0 / 1024.0) * 100;
+  lcd.setCursor(0, 0);
+  lcd.print("Temp: ");
+  lcd.print(temperature, 1); // Display temperature with one decimal place
+  lcd.print("C");
+  lcd.setCursor(0, 1);
+  lcd.print("                "); // Clear the second line
+  lcd.setCursor(0, 1);
+  lcd.print("Temp Sensor"); // Optional: display additional info
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" C");
+  delay(1000);
+}
