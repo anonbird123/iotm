@@ -1,0 +1,42 @@
+// Simple FreeRTOS two-task example for ESP32
+
+#define LED1_PIN 2   // Built-in LED
+#define LED2_PIN 4   // External LED
+
+
+void Task1(void *pvParameters) {
+  pinMode(LED1_PIN, OUTPUT);
+  while (1) {
+    Serial.println("Task 1 is running");
+    digitalWrite(LED1_PIN, HIGH);
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+    digitalWrite(LED1_PIN, LOW);
+    vTaskDelay(500 / portTICK_PERIOD_MS);
+  }
+}
+
+void Task2(void *pvParameters) {
+  pinMode(LED2_PIN, OUTPUT);
+  while (1) {
+    Serial.println("Task 2 is running");
+    digitalWrite(LED2_PIN, HIGH);
+    vTaskDelay(250 / portTICK_PERIOD_MS);
+    digitalWrite(LED2_PIN, LOW);
+    vTaskDelay(250 / portTICK_PERIOD_MS);
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  delay(100);  // Allow serial to initialize
+
+  // Create Task 1
+  xTaskCreate(Task1, "Task1", 1024, NULL, 1, NULL);
+
+  // Create Task 2
+  xTaskCreate(Task2, "Task2", 1024, NULL, 1, NULL);
+}
+
+void loop() {
+  // Empty – FreeRTOS handles the tasks
+}
