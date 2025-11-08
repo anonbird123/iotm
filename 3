@@ -1,0 +1,19 @@
+#include <Servo.h>
+
+Servo servo1;
+
+int X = 0;
+int XVal;
+
+void setup()
+{
+  servo1.attach(3);
+}
+
+void loop()
+{
+ XVal = analogRead(X);
+ XVal = map (XVal, 0, 1023,0, 180);
+ servo1.write(XVal);
+ delay(15);
+}
