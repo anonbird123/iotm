@@ -1,0 +1,37 @@
+void setup() {
+    pinMode(12, OUTPUT);
+    pinMode(10, OUTPUT);
+    pinMode(8, OUTPUT);
+    pinMode(6, OUTPUT);
+    Serial.begin(9600);
+}
+void loop() {
+  digitalWrite(12, HIGH);
+  Serial.println("12 on");
+  delay(1000);
+  digitalWrite(12, LOW);
+  Serial.println("12 off");
+  delay(1000);
+
+  digitalWrite(10, HIGH);
+  Serial.println("10 on");
+  delay(1000);
+  digitalWrite(10, LOW);
+  Serial.println("10 off");
+  delay(1000);
+
+  digitalWrite(8, HIGH);
+  Serial.println("8 on");
+  delay(1000);
+  digitalWrite(8, LOW);
+  Serial.println("8 off");
+  delay(1000);
+
+  digitalWrite(6, HIGH);
+  Serial.println("6 on");
+  delay(1000);
+  digitalWrite(6, LOW);
+  Serial.println("6 off");
+  delay(1000);
+
+}
